@@ -28,18 +28,13 @@ export default {
     }
   },
   created() {
-    axios.get(
-      'https://firestore.googleapis.com/v1/projects/vuejs-http-30f51/databases/(default)/documents/comments'
-    )
-    .then(response => {
+    axios.get('/comments').then(response => {
       this.posts = response.data.documents
     });
   },
   methods: {
     createComment() {
-      axios.post(
-        'https://firestore.googleapis.com/v1/projects/vuejs-http-30f51/databases/(default)/documents/comments',
-        {
+      axios.post('/comments', {
           fields: {
             name: {
               stringValue: this.name
