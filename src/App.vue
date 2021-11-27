@@ -3,6 +3,7 @@
     <header>
       <template v-if="isAuthenticated">
         <router-link to="/" class="header-item">掲示板</router-link>
+        <span class="header-item" @click="logout">ログアウト</span>
       </template>
       <template v-if="!isAuthenticated">
         <router-link to="/login" class="header-item">ログイン</router-link>
@@ -19,6 +20,11 @@ export default {
     isAuthenticated() {
       return this.$store.getters.idToken !== null;
     }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+    }
   }
 }
 </script>
@@ -26,6 +32,7 @@ export default {
 <style scoped>
 .header-item {
   padding: 10px;
+  cursor: pointer;
 }
 </style>
 
